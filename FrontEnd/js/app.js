@@ -49,7 +49,7 @@ tasksList.addEventListener('click', (e) => {
 
     // Update task
     btnUpdate.addEventListener('click', (e) => {
-        e.preventDefault;
+        e.preventDefault();
         fetch(`http://localhost:8080/task/update/${id}`,
             {
                 method: 'PUT',
