@@ -3,10 +3,13 @@ package com.qa.selenium;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Timeouts;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,28 +19,37 @@ public class IndexTest {
 	
 	private WebDriver driver;
 	
-//	@BeforeEach
-//	public void setup() {
-//		this.driver = new ChromeDriver();
-//		this.driver.manage().window().maximize();
-//	}
-//	
-//	@Test
-//	public void testCreate() {
-//		
-//		String testString = "Get coffee";
-//		
-//		IndexPage index = PageFactory.initElements(driver, IndexPage.class);
-//		
-//		this.driver.get(index.URL);
-//		
-//		index.create(testString);
-//		
-//		assertThat(index.checkTask().toLowerCase().contains(testString));
-//	}
-//	
-//	@AfterEach
-//	public void teardown() {
-//		this.driver.close();
-//	}
+	@BeforeEach
+	public void setup() {
+		
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedrive.exe");
+		
+		driver = new ChromeDriver();
+		
+		this.driver = new ChromeDriver();
+		this.driver.manage().window().maximize();
+		
+		Timeouts timeouts = driver.manage().timeouts();
+		timeouts.implicitlyWait(5, TimeUnit.SECONDS); 
+		timeouts.pageLoadTimeout(15, TimeUnit.SECONDS);
+	}
+	
+	@Test
+	public void testCreate() {
+		
+		String testString = "Get coffee";
+		
+		IndexPage index = PageFactory.initElements(driver, IndexPage.class);
+		
+		this.driver.get(index.URL);
+		
+		index.create(testString);
+		
+		assertThat(index.checkTask().toLowerCase().contains(testString));
+	}
+	
+	@AfterEach
+	public void teardown() {
+		this.driver.close();
+	}
 }
