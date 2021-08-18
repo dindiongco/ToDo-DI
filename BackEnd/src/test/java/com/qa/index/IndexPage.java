@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class IndexPage {
 	
-	public final String URL = "http://127.0.0.1:5500/tdl-third-attempt/index.html";
+	public final String URL = "http://127.0.0.1:5500/FrontEnd/index.html";
 	
 	@FindBy(id = "task-value")
 	private WebElement createTask;

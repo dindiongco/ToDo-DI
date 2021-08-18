@@ -22,7 +22,7 @@ public class IndexTest {
 	@BeforeEach
 	public void setup() {
 		
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedrive.exe");
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 		
 		driver = new ChromeDriver();
 		
@@ -37,7 +37,7 @@ public class IndexTest {
 	@Test
 	public void testCreate() {
 		
-		String testString = "Get coffee";
+		String testString = "Get tea";
 		
 		IndexPage index = PageFactory.initElements(driver, IndexPage.class);
 		
@@ -50,6 +50,6 @@ public class IndexTest {
 	
 	@AfterEach
 	public void teardown() {
-		this.driver.close();
+		this.driver.quit();
 	}
 }
